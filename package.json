@@ -1,0 +1,27 @@
+{
+  "name": "blueprintify",
+  "version": "1.0.0",
+  "description": "a CLI that create new project based on your custom template or existed project",
+  "main": "index.js",
+  "type": "module",
+  "bin": {
+    "bpf": "index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shahriarEshraghi/BluePrintify.git"
+  },
+  "author": "shahriar eshraghi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/shahriarEshraghi/BluePrintify/issues"
+  },
+  "homepage": "https://github.com/shahriarEshraghi/BluePrintify#readme",
+  "devDependencies": {
+    "@types/node": "^20.5.7",
+    "typescript": "^5.2.2"
+  }
+}
