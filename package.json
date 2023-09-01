@@ -3,12 +3,12 @@
   "version": "1.0.0",
   "description": "a CLI that create new project based on your custom template or existed project",
   "main": "index.js",
-  "type": "module",
+  "type": "commonjs",
   "bin": {
     "bpf": "./dist/index.js"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "npx tsc"
   },
   "repository": {
     "type": "git",

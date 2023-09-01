@@ -1,2 +1,4 @@
 "use strict";
-console.log('Hello from command line');
+const figlet = require("figlet");
+console.log(figlet.textSync("Dir Manager"));
+//# sourceMappingURL=index.js.map
