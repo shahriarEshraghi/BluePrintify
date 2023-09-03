@@ -1,4 +1,14 @@
+#! /usr/bin/env node 
 "use strict";
 const figlet = require("figlet");
-console.log(figlet.textSync("Dir Manager"));
+const fs = require("fs");
+const { Command } = require('@commander-js/extra-typings');
+const { program } = require('commander');
+program
+    .option('--first')
+    .option('-s, --separator <char>');
+program.parse();
+const options = program.opts();
+const limit = options.first ? 1 : undefined;
+console.log(program.args[0].split(options.separator, limit));
 //# sourceMappingURL=index.js.map
