@@ -6,25 +6,25 @@ const figlet = require("figlet");
 const { Command } = require('@commander-js/extra-typings');
 const program = new Command();
 const filePath = path.join(__dirname, '../sample/sample.txt');
+const exportPath = path.join(__dirname, '../sample/export.txt');
+console.log(filePath);
 function textModifier(username, programmingLang) {
-    let textFile = "";
-    fs.readFile(filePath, 'utf-8', function (err, data) {
-        if (err) {
-            console.error(err);
-        }
-        console.log(data);
-        textFile = data;
-    });
-    const pattern = /<\?USER_NAME\?>|<\?PROGRAMMING_LANG\?>/g;
-    var patterObj = {
-        '<?USER_NAME?>': "dog",
-        '<?PROGRAMMING_LANG?>': "goat",
+    const textFile = fs.readFileSync(filePath, 'utf-8');
+    const pattern = /<\?([A-Z_]+)\?>/g;
+    const patternObj = {
+        '<?USER_NAME?>': username,
+        '<?PROGRAMMING_LANG?>': programmingLang,
     };
-    console.log(textFile);
     let message = '';
-    message = textFile.replace(pattern, username);
-    console.log(message);
+    message = textFile.replace(pattern, function (matched) {
+        return patternObj[matched];
+    });
+    fs.writeFile(exportPath, message, (error) => {
+        if (error) {
+            console.error(error);
+        }
+    });
 }
-textModifier('Shahriar', 'javascript');
+textModifier('AmirKian', 'Node js');
 // file.replace('/<\?USER_NAME\?>/g','shahriar');
 //# sourceMappingURL=index.js.map

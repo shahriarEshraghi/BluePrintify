@@ -7,31 +7,35 @@ const { Command } = require('@commander-js/extra-typings');
 const program = new Command();
 
 const filePath = path.join(__dirname,'../sample/sample.txt');
+const exportPath = path.join(__dirname,'../sample/export.txt')
 
-function textModifier(username:string,programmingLang:string){
-        let textFile = "";
-        fs.readFile(filePath,'utf-8',function(err:any , data:string){
-        if(err){
-            console.error(err);
-        }
-         console.log(data)
-         textFile = data
-        });
-    
-    const pattern = /<\?USER_NAME\?>|<\?PROGRAMMING_LANG\?>/g;
-    
-    var patterObj = {
-        '<?USER_NAME?>':"dog",
-        '<?PROGRAMMING_LANG?>':"goat",
-     };
-     console.log(textFile);
-     let message =  '';
-         message = textFile.replace(pattern,username);
-    
-    
-    console.log(message);
+console.log(filePath);
+interface Pattern {
+    [key: string]: string;
 }
 
-textModifier('Shahriar','javascript');
+function textModifier(username:string,programmingLang:string){
+       const textFile = fs.readFileSync(filePath,'utf-8');
+    
+    const pattern = /<\?([A-Z_]+)\?>/g;
+    
+    const patternObj:Pattern = {
+        '<?USER_NAME?>': username,
+        '<?PROGRAMMING_LANG?>':programmingLang,
+     };
+     let message =  '';
+         message = textFile.replace(pattern,function(matched:string){
+            return patternObj[matched]
+         });
+    
+    
+    fs.writeFile(exportPath,message,(error:string) =>{
+        if(error){
+            console.error(error)
+        }
+    })
+}
+
+textModifier('AmirKian','Node js');
 
 // file.replace('/<\?USER_NAME\?>/g','shahriar');
