@@ -9,7 +9,6 @@ const program = new Command();
 const filePath = path.join(__dirname,'../sample/sample.txt');
 const exportPath = path.join(__dirname,'../sample/export.txt')
 
-console.log(filePath);
 interface Pattern {
     [key: string]: string;
 }
@@ -17,7 +16,8 @@ interface Pattern {
 function commander(){
     program
         .version('0.1.0')
-        .description('a CLI that create new project based on your custom template or existed project');
+        .description('a CLI that create new project based on your custom template or existed project')
+        .parse(process.argv);
 }
 
 function textModifier(username:string,programmingLang:string){
@@ -34,7 +34,7 @@ function textModifier(username:string,programmingLang:string){
             return patternObj[matched]
          });
     
-    
+    commander()
     fs.writeFile(exportPath,message,(error:string) =>{
         if(error){
             console.error(error)

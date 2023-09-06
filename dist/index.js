@@ -11,7 +11,8 @@ console.log(filePath);
 function commander() {
     program
         .version('0.1.0')
-        .description('a CLI that create new project based on your custom template or existed project');
+        .description('a CLI that create new project based on your custom template or existed project')
+        .parse(process.argv);
 }
 function textModifier(username, programmingLang) {
     const textFile = fs.readFileSync(filePath, 'utf-8');
@@ -31,5 +32,4 @@ function textModifier(username, programmingLang) {
     });
 }
 textModifier('AmirKian', 'Node js');
-// file.replace('/<\?USER_NAME\?>/g','shahriar');
 //# sourceMappingURL=index.js.map
