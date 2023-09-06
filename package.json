@@ -23,6 +23,7 @@
   "homepage": "https://github.com/shahriarEshraghi/BluePrintify#readme",
   "devDependencies": {
     "@types/node": "^20.5.7",
+    "ts-node": "^10.9.1",
     "typescript": "^5.2.2"
   },
   "dependencies": {

@@ -1,4 +1,4 @@
-#! /usr/bin/env node 
+#!/usr/bin/env ts-node
 const fs = require("fs");
 const path = require('path');
 const figlet = require("figlet");
@@ -14,8 +14,14 @@ interface Pattern {
     [key: string]: string;
 }
 
+function commander(){
+    program
+        .version('0.1.0')
+        .description('a CLI that create new project based on your custom template or existed project');
+}
+
 function textModifier(username:string,programmingLang:string){
-       const textFile = fs.readFileSync(filePath,'utf-8');
+    const textFile = fs.readFileSync(filePath,'utf-8');
     
     const pattern = /<\?([A-Z_]+)\?>/g;
     
@@ -37,5 +43,3 @@ function textModifier(username:string,programmingLang:string){
 }
 
 textModifier('AmirKian','Node js');
-
-// file.replace('/<\?USER_NAME\?>/g','shahriar');

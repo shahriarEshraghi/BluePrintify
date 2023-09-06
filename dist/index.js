@@ -1,4 +1,4 @@
-#! /usr/bin/env node 
+#!/usr/bin/env ts-node
 "use strict";
 const fs = require("fs");
 const path = require('path');
@@ -8,6 +8,11 @@ const program = new Command();
 const filePath = path.join(__dirname, '../sample/sample.txt');
 const exportPath = path.join(__dirname, '../sample/export.txt');
 console.log(filePath);
+function commander() {
+    program
+        .version('0.1.0')
+        .description('a CLI that create new project based on your custom template or existed project');
+}
 function textModifier(username, programmingLang) {
     const textFile = fs.readFileSync(filePath, 'utf-8');
     const pattern = /<\?([A-Z_]+)\?>/g;
