@@ -2,6 +2,7 @@
 const fs = require("fs");
 const path = require('path');
 const figlet = require("figlet");
+const prompts = require('prompts');
 const { Command } = require('@commander-js/extra-typings');
 
 const program = new Command();
@@ -12,6 +13,11 @@ const exportPath = path.join(__dirname,'../sample/export.txt')
 interface Pattern {
     [key: string]: string;
 }
+interface Prompts {
+    type: String ,
+    name: String,
+    message: String,  
+}
 
 function commander(){
     program
@@ -19,6 +25,24 @@ function commander(){
         .description('a CLI that create new project based on your custom template or existed project')
         .parse(process.argv);
 }
+    const userInfo: Prompts[] =[
+        {
+        type: 'text',
+        name: 'username',
+        message: 'What is your username'
+        },
+        {
+        type: 'text',
+        name: 'programmingLang',
+        message: 'What is your favorite Programming language'
+        },
+    ];
+    
+    (async()=>{
+        commander();
+        const response = await prompts(userInfo);
+        textModifier(response.username,response.programmingLang)
+    })();
 
 function textModifier(username:string,programmingLang:string){
     const textFile = fs.readFileSync(filePath,'utf-8');
@@ -33,13 +57,10 @@ function textModifier(username:string,programmingLang:string){
          message = textFile.replace(pattern,function(matched:string){
             return patternObj[matched]
          });
-    
-    commander()
+    console.log(message);
     fs.writeFile(exportPath,message,(error:string) =>{
         if(error){
             console.error(error)
         }
     })
 }
-
-textModifier('AmirKian','Node js');
