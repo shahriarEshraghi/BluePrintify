@@ -3,6 +3,7 @@ const fs = require("fs");
 const path = require('path');
 const figlet = require("figlet");
 const prompts = require('prompts');
+const chalk = require('chalk');
 const { Command } = require('@commander-js/extra-typings');
 
 const program = new Command();
@@ -29,12 +30,12 @@ function commander(){
         {
         type: 'text',
         name: 'username',
-        message: 'What is your username'
+        message: 'What is your username ?'
         },
         {
         type: 'text',
         name: 'programmingLang',
-        message: 'What is your favorite Programming language'
+        message: 'What is your favorite Programming language ?'
         },
     ];
     
@@ -57,7 +58,7 @@ function textModifier(username:string,programmingLang:string){
          message = textFile.replace(pattern,function(matched:string){
             return patternObj[matched]
          });
-    console.log(message);
+    console.log(chalk.green(message));
     fs.writeFile(exportPath,message,(error:string) =>{
         if(error){
             console.error(error)
