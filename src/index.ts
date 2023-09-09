@@ -3,7 +3,7 @@ const fs = require("fs");
 const path = require('path');
 const figlet = require("figlet");
 const prompts = require('prompts');
-const chalk = require('chalk');
+// const chalk = require('chalk');
 const { Command } = require('@commander-js/extra-typings');
 
 const program = new Command();
@@ -58,7 +58,7 @@ function textModifier(username:string,programmingLang:string){
          message = textFile.replace(pattern,function(matched:string){
             return patternObj[matched]
          });
-    console.log(chalk.green(message));
+    console.log(message);
     fs.writeFile(exportPath,message,(error:string) =>{
         if(error){
             console.error(error)

@@ -9,6 +9,7 @@
   },
   "scripts": {
     "build": "npx tsc",
+    "run": "ts-node ./src/index.ts",
     "bpf": "bpf"
   },
   "repository": {
